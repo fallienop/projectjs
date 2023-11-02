@@ -149,6 +149,8 @@ h1 {
 .taskp {
     flex: 1;
     margin-block: 0.7vw;
+    /* text-wrap: wrap ; */
+    word-break: break-all;
 }
 
 .removebutton {

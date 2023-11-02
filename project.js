@@ -159,7 +159,7 @@ addArraytoHtml(x);
         image.addEventListener('mouseout', () => {
           msOUT(image);
         });
-      
+        position++;
       return image;
         
         }
@@ -174,8 +174,10 @@ addArraytoHtml(x);
     position=0;
   allTasks.innerHTML='';
   const imagePosition = image.getAttribute('data-position');
+  console.log(imagePosition);
+  console.log(taskArray);
  taskArray.splice(imagePosition,1);
- 
+ console.log(taskArray);
  taskArray.forEach((x) => {
   let img = addArraytoHtml(x); 
   img.addEventListener('click', ()   => imageClickListener(img));
