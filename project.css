@@ -1,0 +1,156 @@
+
+.main{
+    width: 29.17vw;
+    /* height: 20.5vw; */
+    margin: 0 auto;
+    margin-top: calc(50vh - 10vw);
+    border: 0.087vw solid #C4C4C4;
+    border-radius: 0.87vw;
+   
+}
+
+.sorter{
+   
+position: relative;
+left: 25vw;  
+ width: 2.17vw;
+ height:  1.3vw;
+ margin-bottom: 0.955vw;
+
+}
+
+.yellowpart{
+    width: 100%;
+    height: 2.43vw;
+    background-color: #FFDC40;
+    border-top-right-radius: 0.87vw;
+    border-top-left-radius: 0.87vw;
+}
+
+h1 {
+    text-align:center;
+   
+    font-weight: 900;
+    font-size:2.26vw;
+    /* width: 17.19vw; */
+    height: 2.95vw;
+    font-family: Roboto;
+}
+
+.container{
+    display: flex;
+    flex-direction: column; 
+}
+
+.inputField{
+    margin: 0 auto;
+    display: flex;
+ 
+  
+}
+
+.sorter:hover{
+    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+}
+.inputField{
+    width: 24.83vw;
+    height: 3.47vw;
+    border: 0.087vw solid #C4C4C4;
+    border-radius: 0.87vw;
+    
+
+   outline: none;
+}
+.inputField input{
+    width: 80%;
+    height: auto;
+   
+   margin-left: 10px;
+    border-width: 0vw;
+   
+   outline: none;
+}
+
+.inputField img{
+    width: 1.74vw;
+    height: 1.74vw;
+    position: relative;
+    left: 1vw;
+    top: 0.9vw;
+    margin-right: -1.8vw;
+}
+
+.savebutton{
+    width: 13vw;
+    height: 3.64vw;
+    border-radius: 6.16vw;
+    background-color: #833AE0;
+    color:#FFFFFF;
+    border-color: transparent;
+    size:1.2153vw;
+}
+.submitField:hover>.savebutton{
+   background-color:  #9953F1
+}
+.submitField:hover>.plusIcon{
+    background-color:  #AA68FE
+ }
+
+
+.submitField{
+    margin: 0 auto;
+    box-sizing: content-box;
+    width: 13vw;
+    margin-top: 1.5625vw;
+    margin-bottom: 1.65vw;
+    display: flex;
+}
+
+.plusIcon{
+    display: flex;
+    height: 3.64vw;
+    width:  3.64vw;
+    justify-content: center;
+    align-items: center;
+    size:1.2153vw;
+    color:#FFFFFF;
+  border-radius: 6.16vw;
+    background-color: #9953F1;
+  position: relative;
+  left: 3.6vw;
+  margin-left: -3.6vw;
+  font-weight: 400;
+  line-height: 1.424vw;
+   
+}
+
+
+.tasks{
+    margin: 0 auto;
+
+    margin-bottom: 1.5625vw;
+    width: 24.83vw;
+    height: auto;
+    display: none;
+    display: flex;
+    flex-direction: column;
+    border: 0.087vw solid #C4C4C4;
+    border-radius: 0.87vw;
+
+}
+
+.task{
+    
+    display: flex;
+    flex-direction: row;
+     
+       padding-inline: 1.43vw;
+}
+.taskp {
+    flex: 1;
+    margin-block: 0.7vw;
+}
+
+.removebutton {
+    margin-left: 30px; 
+}
