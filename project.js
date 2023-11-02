@@ -3,11 +3,6 @@ let taskArray=[];
 let position=0;
 let images=document.querySelectorAll('img');
 let deleterImages=document.querySelectorAll('.tasks .task img');
-
-images.forEach(x=>{
-  x.setAttribute('draggable', false);
-})
-
 let deleteButton=document.querySelectorAll('.deleteButton');
 let inputClear=document.getElementById('inputClear');
 let submitButton=document.querySelector('.submitField');
@@ -17,13 +12,23 @@ let allTasks=document.querySelector('.tasks');
 
 
 
+
+images.forEach(x=>{
+  x.setAttribute('draggable', false);
+})
+
+
+
+
+
 submitButton.addEventListener('click',()=>{
     let inputValue=input.value; 
   
     if(inputValue!=''){ taskArray.push(inputValue);
       let img=addArraytoHtml(inputValue);
 
-    img.addEventListener('click',(e)=>imageClickListener(e.target))
+    img.addEventListener('click',(e)=>imageClickListener(e.target));
+    input.value='';
     }
  
    
@@ -122,57 +127,59 @@ addArraytoHtml(x);
 
 
 
-       function addArraytoHtml(x){
-        
-        if(x!='none'){
-        console.log(taskArray);
-   
-        let taskField=document.createElement('div');
-        taskField.classList.add('task');
+        function addArraytoHtml(x){
           
-        
-        let image=document.createElement('img');
-        image.src='images/Group 56.svg';
-        image.classList.add('deleteButton','removebutton');
-        image.setAttribute('draggable', false);
-        image.setAttribute('data-position', position);
       
-        let task=document.createElement('p'); 
-        task.classList.add('taskp');
-        task.innerHTML =x;
-        taskField.appendChild(task);
-        
-        taskField.appendChild(image);
-         
-        
-        allTasks.appendChild(taskField);
     
-        image.addEventListener('mouseover', () => {
-          msIn(image);
-      });
+          let taskField=document.createElement('div');
+          taskField.classList.add('task');
+            
+          
+          let image=document.createElement('img');
+          image.src='images/Group 56.svg';
+          image.classList.add('deleteButton','removebutton');
+          image.setAttribute('draggable', false);
+          image.setAttribute('data-position', position);
+        
+          let task=document.createElement('p'); 
+          task.classList.add('taskp');
+          task.innerHTML =x;
+          taskField.appendChild(task);
+          
+          taskField.appendChild(image);
+          
+          
+          allTasks.appendChild(taskField);
       
+          image.addEventListener('mouseover', () => {
+            msIn(image);
+        });
         
-      image.addEventListener('mouseout', () => {
-         msOUT(image);
-      });
-    
-    return image;
-       
-      }
-
+          
+        image.addEventListener('mouseout', () => {
+          msOUT(image);
+        });
+      
+      return image;
+        
         }
+
+          
 
      
 
  function imageClickListener(image){
 
 
-    
+    position=0;
   allTasks.innerHTML='';
   const imagePosition = image.getAttribute('data-position');
- taskArray[imagePosition]='none';
+ taskArray.splice(imagePosition,1);
  
- taskArray.forEach(x=>{addArraytoHtml(x);  position++;}  )
-
-
+ taskArray.forEach((x) => {
+  let img = addArraytoHtml(x); 
+  img.addEventListener('click', ()   => imageClickListener(img));
+  position++;
+});
+ 
  }
