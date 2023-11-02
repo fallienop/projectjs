@@ -14,6 +14,15 @@ let allTasks=document.querySelector('.tasks');
 
 
 
+
+let draggedItem = null;
+
+// Add event listeners for drag and drop events
+
+allTasks.addEventListener('dragstart', handleDragStart);
+allTasks.addEventListener('dragover', handleDragOver);
+allTasks.addEventListener('drop', handleDrop);
+
 images.forEach(x=>{
   x.setAttribute('draggable', false);
 })
@@ -160,7 +169,7 @@ sorter.addEventListener('click',(e)=>{
           
           
           allTasks.appendChild(taskField);
-      
+      taskField.setAttribute('draggable',true);
           image.addEventListener('mouseover', () => {
             msIn(image);
         });
@@ -195,3 +204,58 @@ sorter.addEventListener('click',(e)=>{
  
  }
 
+
+
+
+
+
+
+
+
+   
+    // Drag start event handler
+    function handleDragStart(event) {
+      draggedItem = event.target;
+      event.dataTransfer.effectAllowed = 'move';
+      event.dataTransfer.setData('text/html', draggedItem.innerHTML);
+      event.target.style.opacity = '0.5';
+    }
+
+    // Drag over event handler
+    function handleDragOver(event) {
+      event.preventDefault();
+      event.dataTransfer.dropEffect = 'move';
+      const targetItem = event.target;
+      if (targetItem !== draggedItem && targetItem.classList.contains('task')) {
+        const boundingRect = targetItem.getBoundingClientRect();
+        const offset = boundingRect.y + (boundingRect.height / 2);
+        if (event.clientY - offset > 0) {
+          targetItem.style.borderBottom = 'solid 2px #ffffff';
+          targetItem.style.borderTop = '';
+      
+        } else {
+          targetItem.style.borderTop = 'solid 2px #ffffff';
+          targetItem.style.borderBottom = '';
+          
+        }
+      }
+    }
+
+    // Drop event handler
+    function handleDrop(event) {
+      event.preventDefault();
+      const targetItem = event.target;
+      if (targetItem !== draggedItem && targetItem.classList.contains('task')) {
+        if (event.clientY > targetItem.getBoundingClientRect().top + (targetItem.offsetHeight / 2)) {
+          targetItem.parentNode.insertBefore(draggedItem, targetItem.nextSibling);
+        } else {
+          targetItem.parentNode.insertBefore(draggedItem, targetItem);
+        }
+      }
+      
+      targetItem.style.borderTop = '';
+      targetItem.style.borderBottom = '';
+
+      draggedItem.style.opacity = '';
+      draggedItem = null;
+    }
