@@ -1,4 +1,5 @@
 
+let sorterEnabled=false;
 let taskArray=[];
 let position=0;
 let images=document.querySelectorAll('img');
@@ -24,14 +25,15 @@ images.forEach(x=>{
 submitButton.addEventListener('click',()=>{
     let inputValue=input.value; 
   
-    if(inputValue!=''){ taskArray.push(inputValue);
+    if(inputValue!=''){ 
+      sorterEnabled=true;
+      taskArray.push(inputValue);
       let img=addArraytoHtml(inputValue);
 
     img.addEventListener('click',(e)=>imageClickListener(e.target));
     input.value='';
     }
- 
-   
+
     
 
 
@@ -42,19 +44,17 @@ submitButton.addEventListener('click',()=>{
 
 
 sorter.addEventListener('click',(e)=>{
-  let flag=e.target.src=="http://127.0.0.1:5500/images/Group%2074.svg";
 
-  allTasks.innerHTML='';
+  if(sorterEnabled){
+  let flag=(String(e.target.src)).includes("74.svg");
+
+  
 
   if(flag){
     
  taskArray = orderDescending(taskArray);
  e.target.src='images/Group 90.svg';
- console.log(taskArray)
-taskArray.forEach(x=>{
-addArraytoHtml(x);
 
-})
 }
 
 
@@ -62,13 +62,23 @@ addArraytoHtml(x);
   
     taskArray = orderAscending(taskArray);
     e.target.src='images/Group 74.svg';
-    console.log(taskArray)
-    taskArray.forEach(x=>{
-      addArraytoHtml(x);
-     
-      })
+
   }
 
+  position=0;
+  allTasks.innerHTML='';
+   taskArray.forEach(x=>{
+    let img=addArraytoHtml(x);
+    img.addEventListener('click',(e)=>{
+      imageClickListener(e.target )})
+   })
+  
+
+
+
+
+  
+  }
  
 })
 
@@ -174,10 +184,9 @@ addArraytoHtml(x);
     position=0;
   allTasks.innerHTML='';
   const imagePosition = image.getAttribute('data-position');
-  console.log(imagePosition);
-  console.log(taskArray);
+  
  taskArray.splice(imagePosition,1);
- console.log(taskArray);
+
  taskArray.forEach((x) => {
   let img = addArraytoHtml(x); 
   img.addEventListener('click', ()   => imageClickListener(img));
@@ -185,3 +194,4 @@ addArraytoHtml(x);
 });
  
  }
+
