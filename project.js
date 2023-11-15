@@ -101,6 +101,7 @@ sorter.addEventListener('click',(e)=>{
   deleteButton.forEach(x=>x.addEventListener('mouseout',(e)=>{
     
       msOUT(e.target);}
+   
 
     ));
 
@@ -170,7 +171,9 @@ sorter.addEventListener('click',(e)=>{
           
           allTasks.appendChild(taskField);
       taskField.setAttribute('draggable',true);
-          image.addEventListener('mouseover', () => {
+      
+      
+      image.addEventListener('mouseover', () => {
             msIn(image);
         });
         
@@ -178,6 +181,8 @@ sorter.addEventListener('click',(e)=>{
         image.addEventListener('mouseout', () => {
           msOUT(image);
         });
+
+        
         position++;
       return image;
         
@@ -259,3 +264,6 @@ sorter.addEventListener('click',(e)=>{
       draggedItem.style.opacity = '';
       draggedItem = null;
     }
+
+
+  
