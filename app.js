@@ -34,7 +34,7 @@ images.forEach(x=>{
 submitButton.addEventListener('click',()=>{
     let inputValue=input.value; 
   
-    if(inputValue!=''){ 
+    if(inputValue.trim()!=''){ 
       sorterEnabled=true;
       taskArray.push(inputValue);
       let img=addArraytoHtml(inputValue);
@@ -194,24 +194,18 @@ sorter.addEventListener('click',(e)=>{
 
  function imageClickListener(image){
 
-
-    position=0;
   allTasks.innerHTML='';
   const imagePosition = image.getAttribute('data-position');
+  taskArray.splice(imagePosition,1); 
+    position=0;
   
- taskArray.splice(imagePosition,1);
-
  taskArray.forEach((x) => {
+
   let img = addArraytoHtml(x); 
   img.addEventListener('click', ()   => imageClickListener(img));
-  position++;
 });
- 
- }
 
-
-
-
+ }  
 
 
 
